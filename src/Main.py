@@ -8,7 +8,6 @@ Created on Jan 11, 2011
 import pygame
 from pygame.locals import *
 from Camera import *
-#from Node import *
 from objects import *
 
 camera = Camera()
@@ -17,6 +16,7 @@ screen = pygame.display.set_mode(camera.get_tuple())
 pygame.display.set_caption('Prototype')
 
 nodes = []
+clouds = []
 isGameRunning = True
 
 
@@ -32,9 +32,13 @@ def prepare():
                          'data/image/ball/orange_ball.png',
                          'data/image/ball/green_ball.png',
                          'data/image/ball/black_ball.png',
-                         'data/image/ball/blue_ball.png'])
+                         'data/image/ball/blue_ball.png',
+                         'data/image/cloud/cloud.png'])
     for iter in range(0,100):
         nodes.append(Node(images))
+        pass
+    for iter in range(0,10):
+        clouds.append(Cloud(images))
         pass
     pass
 
@@ -61,6 +65,8 @@ def input():
 def update(deltaTime):
     for obj in nodes:
         obj.update(deltaTime)
+    for cloud in clouds:
+        cloud.update(deltaTime)
     camera.update()
     pass
 
@@ -68,6 +74,8 @@ def render(surface):
     surface.fill((0,0,250))
     for obj in nodes:
         obj.draw(surface, camera)
+    for cloud in clouds:
+        cloud.draw(surface, camera)
     pass
 
 def main():    
