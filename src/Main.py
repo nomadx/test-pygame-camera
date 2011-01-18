@@ -9,8 +9,10 @@ import pygame
 from pygame.locals import *
 from Camera import *
 from objects import *
+from LevelReader import *
 
 camera = Camera()
+lr = LevelReader()
 pygame.init()
 screen = pygame.display.set_mode(camera.get_tuple())
 pygame.display.set_caption('Prototype')
@@ -80,7 +82,8 @@ def render(surface):
 
 def main():    
     prepare()
-    updateClock = pygame.time.Clock()    
+    updateClock = pygame.time.Clock()   
+    lr.read_map_info()
     while(isGameRunning):        
         input()      
         update(updateClock.tick())        
